@@ -18,12 +18,14 @@ const renderCharacter = function (data) {
 
       //render character data to the DOM.
       const html = `
-      <section class="location">
-        <strong class="characterName">Name: ${data.name}</strong>
-        <strong class="birth_year">Birth Year: ${data.birth_year}</strong>
-        <strong class="species">Species: ${speciesName}</strong>
-        <strong class="gender">Gender: ${data.gender}</strong>
-      </section>
+      <ul>
+      <li><h3>CHARACTER</h3></li>
+        <li><strong class="subTitle">Name: </strong><span>${data.name}</span></li>
+        <li><strong class="subTitle">Birth Year: </strong><span>${data.birth_year}</span></li>
+        <li><strong class="subTitle">Species: </strong><span>${speciesName}</span></li>
+        <li><strong class="subTitle">Gender: </strong><span>${data.gender}</span></li>
+      </ul>
+   
       `;
       characterCard.insertAdjacentHTML("beforeend", html);
       //call to get homeworld data.
@@ -50,19 +52,19 @@ const getCharacterData = function (person) {
     .then((data) => renderCharacter(data));
 };
 getCharacterData(randomGenerator(maxCharacters));
-//Fetch homeworld data
-// getHomeworldData(data.homeworld);
-// getFilmData(data.films);
 
 //LOOK ----> HOMEWORLD CARD
 //Render homeworld info
 const renderOrigin = function (data) {
   const originHTML = `
-    <section class="originCard">
-        <strong class="planetName">Planet Name: ${data.name}</strong>
-        <strong class="population">Population: ${data.population}</strong>
-        <strong class="terrain">Terrain: ${data.terrain}</strong>
-      </section>
+  
+    <ul>
+        <li><h3>HOME WORLD</h3></li>
+        <li><strong class="subTitle">Planet Name: </strong><span>${data.name}</span></li>
+        <li><strong class="subTitle">Population: </strong><span>${data.population}</span></li>
+        <li><strong class="subTitle">Terrain: </strong><span>${data.terrain}</span></li>
+    </ul>
+    
       `;
   originCard.insertAdjacentHTML("beforeend", originHTML);
 };
@@ -76,13 +78,13 @@ const getHomeworldData = function (homeworld) {
 //LOOK ----> FILM CARD
 //Render film info
 const renderFilms = function (data) {
-  console.log(data);
   const filmHTML = `
-    <section class="films">
-        <strong class="title">Title: ${data.title}</strong>
-        <strong class="director">Director: ${data.director}</strong>
-        <strong class="release_date">Release Date:${data.release_date}</strong>
-    </section>
+  <ul>
+  <li><h3>FILMS:</h3></li>
+  <li><strong class="subTitle">Title: </strong><span>${data.title}</span></li>
+  <li><strong class="subTitle">Director: </strong><span>${data.director}</span></li>
+  <li><strong class="subTitle">Release Date: </strong><span>${data.release_date}</span></li>
+  </ul>
     `;
   filmCard.insertAdjacentHTML("beforeend", filmHTML);
 };

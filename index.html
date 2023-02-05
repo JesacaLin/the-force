@@ -10,6 +10,13 @@
       href="https://fonts.googleapis.com/css2?family=Poller+One&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,100&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="style.css" />
 
     <title>The Force</title>
@@ -21,18 +28,17 @@
     <main>
       <!-- SO MAYBE I HAVE THREE CATAGORIES OF INFO. ADD A RANDOM BUTTON SO SHUFFLE THROUGHT HE CHARACTERS? -->
       <h1 class="siteTitle">Your Guide to the Star Wars Universe</h1>
-      <!-- </div>GRAB FROM PEOPLE API ENDPOINT-->
-      <div class="characterCard">
-        <h5>CHARACTER</h5>
-      </div>
-      <!-- </div>GRAB FROM PLANET API ENDPOINT-->
-      <div class="originCard">
-        <h5>HOME WORLD</h5>
-      </div>
-      <!-- </div>GRAB FROM FILMS API ENDPOINT-->
-      <div class="filmCard">
-        <h5>APPEARED IN</h5>
-      </div>
+      <section class="mainCardBody">
+        <div class="characterCard">
+          <div class="cardInfo"></div>
+        </div>
+        <div class="originCard">
+          <div class="cardInfo"></div>
+        </div>
+        <div class="filmCard">
+          <div class="cardInfo"></div>
+        </div>
+      </section>
       <div class="select">
         <button class="btn">Generate!</button>
       </div>
