@@ -19,15 +19,17 @@ const renderCharacter = function (data) {
       //render character data to the DOM.
       const html = `
       <section class="location">
-        <strong class="characterName">${data.name}</strong>
-        <strong class="birth_year">${data.birth_year}</strong>
-        <strong class="species">${speciesName}</strong>
-        <strong class="gender">${data.gender}</strong>
+        <strong class="characterName">Name: ${data.name}</strong>
+        <strong class="birth_year">Birth Year: ${data.birth_year}</strong>
+        <strong class="species">Species: ${speciesName}</strong>
+        <strong class="gender">Gender: ${data.gender}</strong>
       </section>
       `;
       characterCard.insertAdjacentHTML("beforeend", html);
-      //Fetch homeworld data
+      //call to get homeworld data.
       getHomeworldData(data.homeworld);
+      //call to get film data.
+      getFilmData(data.films);
     });
 };
 
@@ -48,21 +50,23 @@ const getCharacterData = function (person) {
     .then((data) => renderCharacter(data));
 };
 getCharacterData(randomGenerator(maxCharacters));
+//Fetch homeworld data
+// getHomeworldData(data.homeworld);
+// getFilmData(data.films);
 
 //LOOK ----> HOMEWORLD CARD
 //Render homeworld info
 const renderOrigin = function (data) {
   const originHTML = `
     <section class="originCard">
-        <strong class="planetName">${data.name}</strong>
-        <strong class="population">${data.population}</strong>
-        <strong class="terrain">${data.terrain}</strong>
+        <strong class="planetName">Planet Name: ${data.name}</strong>
+        <strong class="population">Population: ${data.population}</strong>
+        <strong class="terrain">Terrain: ${data.terrain}</strong>
       </section>
       `;
   originCard.insertAdjacentHTML("beforeend", originHTML);
 };
 
-//Fetching data from the homeworld endpoint.
 const getHomeworldData = function (homeworld) {
   fetch(homeworld)
     .then((response) => response.json())
@@ -71,5 +75,23 @@ const getHomeworldData = function (homeworld) {
 
 //LOOK ----> FILM CARD
 //Render film info
+const renderFilms = function (data) {
+  console.log(data);
+  const filmHTML = `
+    <section class="films">
+        <strong class="title">Title: ${data.title}</strong>
+        <strong class="director">Director: ${data.director}</strong>
+        <strong class="release_date">Release Date:${data.release_date}</strong>
+    </section>
+    `;
+  filmCard.insertAdjacentHTML("beforeend", filmHTML);
+};
 
-//Fetching data from the film endpoint
+//Fetching data from the films endpoint.
+const getFilmData = function (film) {
+  film.forEach((film) => {
+    fetch(film)
+      .then((response) => response.json())
+      .then((data) => renderFilms(data));
+  });
+};
