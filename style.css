@@ -1,0 +1,11 @@
+html {
+  box-sizing: border-box;
+  font-family: "Poller One", cursive;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
