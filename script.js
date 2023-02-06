@@ -1,8 +1,8 @@
 "use strict";
 //Selecting the DOM elements
-const characterCard = document.querySelector(".characterCard");
-const originCard = document.querySelector(".originCard");
-const filmCard = document.querySelector(".filmCard");
+let characterCard = document.querySelector(".characterCard");
+let originCard = document.querySelector(".originCard");
+let filmCard = document.querySelector(".filmCard");
 const characterName = document.querySelector(".characterName");
 const btn = document.querySelector(".btn");
 
@@ -16,6 +16,7 @@ function renderCharacter(data, speciesName) {
   const html = `
       <div class="cardInfo">
       <ul>
+      <h3>STATS</h3>
         <li><strong class="subTitle">Birth Year: </strong><span>${data.birth_year}</span></li>
         <li><strong class="subTitle">Species: </strong><span>${speciesName}</span></li>
         <li><strong class="subTitle">Gender: </strong><span>${data.gender}</span></li>
@@ -36,6 +37,7 @@ function renderOrigin(data) {
   const originHTML = `
     <div class="cardInfo">
       <ul>
+      <h3>HOME WORLD</h3>
           <li><strong class="subTitle">Planet Name: </strong><span>${data.name}</span></li>
           <li><strong class="subTitle">Orbital Period: </strong><span>${data.orbital_period}</span></li>
           <li><strong class="subTitle">Population: </strong><span>${data.population}</span></li>
@@ -49,10 +51,10 @@ function renderOrigin(data) {
 //LOOK ----> FILM CARD
 //Render film info
 function renderFilms(data) {
-  console.log(data.title, data.director);
   const filmHTML = `
       <div class="cardInfo">
       <ul>
+      <h3>FILMS</h3>
       <li><strong class="subTitle">Title: </strong><span>${data.title}</span></li>
       <li><strong class="subTitle">Director: </strong><span>${data.director}</span></li>
       <li><strong class="subTitle">Release Date: </strong><span>${data.release_date}</span></li>
@@ -66,14 +68,14 @@ function renderFilms(data) {
 //LOOK --> Fetching data from API
 
 //Generate a random person from the api
-const maxCharacters = 87;
-
-function randomGenerator(num) {
-  return Math.floor(Math.random() * num) + 1;
-}
 
 //Fetching data from the characters endpoint.
 async function getCharacterData() {
+  const maxCharacters = 87;
+
+  function randomGenerator(num) {
+    return Math.floor(Math.random() * num) + 1;
+  }
   const res = await fetch(
     `https://swapi.dev/api/people/${randomGenerator(maxCharacters)}/`
   );
@@ -83,7 +85,6 @@ async function getCharacterData() {
   let speciesData = await speciesRes.json();
   renderCharacter(data, speciesData.name);
 }
-getCharacterData(randomGenerator(maxCharacters));
 
 //Fetching data from home world endpoint.
 async function getHomeworldData(homeworld) {
@@ -105,5 +106,11 @@ async function getFilmData(films) {
   filmData.forEach(renderFilms);
 }
 
-// adding click event to button
-btn.addEventListener("click", getCharacterData);
+// clearing old data before adding new data
+
+btn.addEventListener("click", function () {
+  characterCard.innerHTML = "";
+  originCard.innerHTML = "";
+  filmCard.innerHTML = "";
+  getCharacterData();
+});

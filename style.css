@@ -65,17 +65,22 @@ nav {
   flex-direction: column;
   height: 100%;
   background-color: aliceblue;
-  padding: 0.8rem 2rem 2rem 2rem;
+  padding: 1rem;
   border-radius: 25px;
   line-height: 1.5rem;
   font-size: 1.1rem;
 }
 
+h3 {
+  padding: 0;
+  margin-top: 0.3rem;
+}
+
 .cardInfo {
-  padding: 1rem 3rem;
+  padding: 2rem;
   border-radius: 25px;
   border: solid 0.2rem rgb(25, 25, 25);
-  margin-bottom: 1rem;
+  margin: 1rem;
 }
 
 .btn {
