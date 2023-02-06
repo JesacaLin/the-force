@@ -10,6 +10,13 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  background-image: url(img/pic2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 li,
 ul {
   list-style: none;
@@ -18,8 +25,6 @@ ul {
 }
 
 nav {
-  background-color: aliceblue;
-  padding: 0.8rem 0;
   width: 100%;
   border-bottom: solid 0.3rem rgb(25, 25, 25);
 }
@@ -41,7 +46,7 @@ nav {
 }
 
 .characterName {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   text-align: center;
   margin-bottom: 4rem;
 }
@@ -60,15 +65,21 @@ nav {
   flex-direction: column;
   height: 100%;
   background-color: aliceblue;
-  padding: 1rem 3rem 3rem 3rem;
+  padding: 0.8rem 2rem 2rem 2rem;
   border-radius: 25px;
-  border: solid 0.3rem rgb(25, 25, 25);
-  line-height: 2rem;
+  line-height: 1.5rem;
   font-size: 1.1rem;
 }
 
+.cardInfo {
+  padding: 1rem 3rem;
+  border-radius: 25px;
+  border: solid 0.2rem rgb(25, 25, 25);
+  margin-bottom: 1rem;
+}
+
 .btn {
-  padding: 1.3rem 3rem;
+  padding: 1rem 2rem;
   font-family: "Poller One", cursive;
   font-weight: 500;
   font-size: 1.3rem;
