@@ -3,6 +3,7 @@
 const characterCard = document.querySelector(".characterCard");
 const originCard = document.querySelector(".originCard");
 const filmCard = document.querySelector(".filmCard");
+const characterName = document.querySelector(".characterName");
 const btn = document.querySelector(".btn");
 
 //LOOK --> CHARACTER CARD
@@ -14,16 +15,16 @@ const renderCharacter = function (data) {
     .then((response) => response.json())
     .then((speciesData) => {
       speciesName = speciesData.name;
-      //extra info of homeworld
+
+      characterName.innerHTML = `${data.name}`;
 
       //render character data to the DOM.
       const html = `
       <ul>
-      <li><h3>CHARACTER</h3></li>
-        <li><strong class="subTitle">Name: </strong><span>${data.name}</span></li>
-        <li><strong class="subTitle">Birth Year: </strong><span>${data.birth_year}</span></li>
+        <li><strong class="subTitle">Birth Year: <span>${data.birth_year}</span></strong></li>
         <li><strong class="subTitle">Species: </strong><span>${speciesName}</span></li>
         <li><strong class="subTitle">Gender: </strong><span>${data.gender}</span></li>
+        <li><strong class="subTitle">Eye Color: </strong><span>${data.eye_color}</span></li>
       </ul>
    
       `;
@@ -57,10 +58,8 @@ getCharacterData(randomGenerator(maxCharacters));
 //Render homeworld info
 const renderOrigin = function (data) {
   const originHTML = `
-  
     <ul>
-        <li><h3>HOME WORLD</h3></li>
-        <li><strong class="subTitle">Planet Name: </strong><span>${data.name}</span></li>
+        <li><strong class="subTitle">Planet Name: <span>${data.name}</span></strong></li>
         <li><strong class="subTitle">Population: </strong><span>${data.population}</span></li>
         <li><strong class="subTitle">Terrain: </strong><span>${data.terrain}</span></li>
     </ul>
@@ -80,11 +79,11 @@ const getHomeworldData = function (homeworld) {
 const renderFilms = function (data) {
   const filmHTML = `
   <ul>
-  <li><h3>FILMS:</h3></li>
-  <li><strong class="subTitle">Title: </strong><span>${data.title}</span></li>
+  <li><strong class="subTitle">Title: <span>${data.title}</span></strong></li>
   <li><strong class="subTitle">Director: </strong><span>${data.director}</span></li>
   <li><strong class="subTitle">Release Date: </strong><span>${data.release_date}</span></li>
   </ul>
+  
     `;
   filmCard.insertAdjacentHTML("beforeend", filmHTML);
 };
@@ -97,3 +96,6 @@ const getFilmData = function (film) {
       .then((data) => renderFilms(data));
   });
 };
+
+// adding click event to button
+btn.addEventListener("click", getCharacterData);
