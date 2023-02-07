@@ -34,7 +34,7 @@ To start, please click "Generate A Random Character!"
 | `id`      | `string` | **Required**. Id of item to fetch |
 
 
-## Screenshots
+## Screenshot
 
 ![App Screenshot](https://github.com/JesacaLin/the-force/blob/main/img/the-force.jpg?raw=true)
 
