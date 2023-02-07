@@ -4,6 +4,13 @@
 A Star Wars character generator using SWAPI, The Star Wars API.
 
 To start, please click "Generate A Random Character!"
+
+## Features
+
+- Stats on the character's birth year, species, gender, eye color.
+- Data on their home world: Planet name, orbital period, population, terrain.
+- Data on the films the character appeared in: Title, director, release date.
+
 ## API Reference
 
 #### API Root
@@ -25,15 +32,6 @@ To start, please click "Generate A Random Character!"
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
-
-
-
-## Features
-
-- Stats on the character's birth year, species, gender, eye color.
-- Data on their home world: Planet name, orbital period, population, terrain.
-- Data on the films the character appeared in: Title, director, release date.
-
 
 
 ## Screenshots
