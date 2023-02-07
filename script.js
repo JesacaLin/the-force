@@ -5,6 +5,7 @@ let originCard = document.querySelector(".originCard");
 let filmCard = document.querySelector(".filmCard");
 const characterName = document.querySelector(".characterName");
 const btn = document.querySelector(".btn");
+const loading = document.querySelector(".loading");
 
 //LOOK --> CHARACTER CARD
 //Render characters to the character card
@@ -71,39 +72,67 @@ function renderFilms(data) {
 
 //Fetching data from the characters endpoint.
 async function getCharacterData() {
-  const maxCharacters = 87;
+  try {
+    // const maxCharacters = 82;
 
-  function randomGenerator(num) {
-    return Math.floor(Math.random() * num) + 1;
+    // function randomGenerator(num) {
+    //   let personNum = Math.floor(Math.random() * num) + 1;
+
+    //   while (personNum > maxCharacters) {
+    //     personNum = Math.floor(Math.random() * num) + 1;
+    //   }
+    //   console.log(personNum);
+    //   return personNum;
+    // }
+    const res = await fetch(`https://swapi.dev/api/people/12/`);
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    } else {
+      console.log(res);
+    }
+    const data = await res.json();
+    console.log(data.species);
+    let speciesRes = await fetch(data.species);
+    //Validating that species is not an empty array.
+    if (data.species.length === 1) {
+      let speciesData = await speciesRes.json();
+      renderCharacter(data, speciesData.name);
+    } else {
+      //   div.style.display = "none";
+      renderCharacter(data);
+    }
+  } catch (error) {
+    console.error(error);
+    console.log(await res.text());
   }
-  const res = await fetch(
-    `https://swapi.dev/api/people/${randomGenerator(maxCharacters)}/`
-  );
-  const data = await res.json();
-  //Fetch the name of the species from the link
-  let speciesRes = await fetch(data.species);
-  let speciesData = await speciesRes.json();
-  renderCharacter(data, speciesData.name);
 }
 
 //Fetching data from home world endpoint.
 async function getHomeworldData(homeworld) {
-  const res = await fetch(homeworld);
-  const data = await res.json();
-  renderOrigin(data);
+  try {
+    const res = await fetch(homeworld);
+    const data = await res.json();
+    renderOrigin(data);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 //Fetching data from the films endpoint.
 //use map method to fetch all film json data and create an array of promiese. then use Promise.all will wait for all of the promises to resolve, and retrieve the resolved values all at once.
 async function getFilmData(films) {
-  const filmData = await Promise.all(
-    films.map(async (film) => {
-      const res = await fetch(film);
-      return res.json();
-    })
-  );
-  //calling renderFilms for each of the values in the filmData array.
-  filmData.forEach(renderFilms);
+  try {
+    const filmData = await Promise.all(
+      films.map(async (film) => {
+        const res = await fetch(film);
+        return res.json();
+      })
+    );
+    //calling renderFilms for each of the values in the filmData array.
+    filmData.forEach(renderFilms);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 // clearing old data before adding new data
