@@ -68,38 +68,33 @@ function renderFilms(data) {
 
 //LOOK --> Fetching data from API
 
-//Generate a random person from the api
-
 //Fetching data from the characters endpoint.
 async function getCharacterData() {
   try {
-    // const maxCharacters = 82;
+    //Generate a random person from the api
+    const maxCharacters = 82;
 
-    // function randomGenerator(num) {
-    //   let personNum = Math.floor(Math.random() * num) + 1;
-
-    //   while (personNum > maxCharacters) {
-    //     personNum = Math.floor(Math.random() * num) + 1;
-    //   }
-    //   console.log(personNum);
-    //   return personNum;
-    // }
-    const res = await fetch(`https://swapi.dev/api/people/12/`);
+    function randomGenerator(num) {
+      let personNum = Math.floor(Math.random() * num) + 1;
+      return personNum;
+    }
+    const res = await fetch(
+      `https://swapi.dev/api/people/${randomGenerator(maxCharacters)}/`
+    );
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
-    } else {
-      console.log(res);
     }
     const data = await res.json();
-    console.log(data.species);
-    let speciesRes = await fetch(data.species);
+
     //Validating that species is not an empty array.
-    if (data.species.length === 1) {
+    let speciesData = {};
+    if (data.species && data.species.length === 1) {
+      let speciesRes = await fetch(data.species);
       let speciesData = await speciesRes.json();
       renderCharacter(data, speciesData.name);
     } else {
-      //   div.style.display = "none";
-      renderCharacter(data);
+      speciesData.name = "No data available";
+      renderCharacter(data, speciesData.name);
     }
   } catch (error) {
     console.error(error);
@@ -136,7 +131,6 @@ async function getFilmData(films) {
 }
 
 // clearing old data before adding new data
-
 btn.addEventListener("click", function () {
   characterCard.innerHTML = "";
   originCard.innerHTML = "";

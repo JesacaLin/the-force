@@ -15,6 +15,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  height: 100%;
 }
 
 li,
@@ -33,6 +34,7 @@ nav {
   text-align: center;
   font-family: "Poller One", cursive;
   font-size: 1.3rem;
+  margin-top: 1rem;
 }
 
 .siteTitle {
@@ -42,13 +44,13 @@ nav {
 .siteTitle,
 .select {
   text-align: center;
-  margin: 4rem;
+  margin: 3rem;
 }
 
 .characterName {
   font-size: 1.8rem;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .mainCardBody {
@@ -77,7 +79,7 @@ h3 {
 }
 
 .cardInfo {
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 25px;
   border: solid 0.2rem rgb(25, 25, 25);
   margin: 1rem;
@@ -92,4 +94,5 @@ h3 {
   border: solid 0.3rem rgb(25, 25, 25);
   background-color: aliceblue;
   cursor: pointer;
+  margin-bottom: 3rem;
 }
