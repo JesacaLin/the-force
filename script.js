@@ -79,7 +79,7 @@ async function getCharacterData() {
       return personNum;
     }
     const res = await fetch(
-      `https://swapi.dev/api/people/${randomGenerator(maxCharacters)}/`
+      `https://swapi.py4e.com/api/people/${randomGenerator(maxCharacters)}/`
     );
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
